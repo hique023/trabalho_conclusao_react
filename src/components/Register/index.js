@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import loginimg from '../../assets/register.png'
+import registerimg from '../../assets/register.png'
 import { IoReturnDownBackOutline } from 'react-icons/io5'
 import { useState } from 'react'
 
@@ -48,7 +48,7 @@ const Link = styled.a`
   transition: opacity 0.2s;
 `
 
-const Loginimg = styled.img`
+const Registerimg = styled.img`
   max-width: 500px;
   margin-right: 30px;
 `
@@ -61,7 +61,7 @@ const Input = styled.input`
   width: 100%;
   height: 60px;
   color: #FF7989;
-  margin-top: 16px;
+  margin-top: 10px;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #e5e5e5;
@@ -103,7 +103,7 @@ export default function Register() {
 
   return (
     <Site>
-      <Loginimg src={loginimg} />
+      <Registerimg src={registerimg} />
       <Container>
         <Title>Cadastro</Title>
         <Text>Realize seu cadastro para aproveitar a plataforma!</Text>

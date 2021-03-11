@@ -61,7 +61,7 @@ const Input = styled.input`
   width: 100%;
   height: 60px;
   color: #FF7989;
-  margin-top: 16px;
+  margin-top: 10px;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #e5e5e5;
@@ -111,8 +111,8 @@ export default function Login() {
                 </Form>
                 <Link href="https://www.google.com.br">
                     <FiLogIn size={18} color="#FF7989" />
-          Não tenho cadastro
-        </Link>
+                    Não tenho cadastro
+                </Link>
             </Container>
             <Loginimg src={loginimg} />
         </Site>
