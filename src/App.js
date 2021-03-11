@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import loginimg from './assets/loginpage.png'
+import { FiLogIn } from 'react-icons/fi'
 
 const Site = styled.div`
   width: 100%;
@@ -32,12 +33,18 @@ const Title = styled.h1`
 const Text = styled.p`
   margin-top: 25px;
   color: #797979;
+  font-size: 18px;
 `
 
 const Link = styled.a`
+  display: flex;
+  align-items: center;
   margin-top: 16px;
-  color: #FF7989;
+  color: #41414d;
+  font-size: 18px;
   text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
 `
 
 const Loginimg = styled.img`
@@ -77,10 +84,13 @@ export default function App() {
       <Container>
         <Title>Login</Title>
         <Text>Faça login e aproveite a plataforma!</Text>
-        <Input placeholder="E-mail"></Input>
+        <Input type="email" placeholder="E-mail"></Input>
         <Input type="password" placeholder="Senha"></Input>
         <Button>Login</Button>
-        <Link href="https://www.google.com.br">Não tenho cadastro</Link>
+        <Link href="https://www.google.com.br">
+          <FiLogIn size={18} color="#FF7989" />
+          Não tenho cadastro
+        </Link>
       </Container>
       <Loginimg src={loginimg} />
     </Site>
