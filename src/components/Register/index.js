@@ -96,8 +96,10 @@ export default function Register() {
     e.preventDefault()
 
     console.log(
+      name,
+      lastname,
       email,
-      password
+      password,
     );
   }
 
@@ -109,7 +111,7 @@ export default function Register() {
         <Text>Realize seu cadastro para aproveitar a plataforma!</Text>
         <Form onSubmit={handleLogin}>
           <Input value={name} type="text" placeholder="Nome" onChange={e => setName(e.target.value)}></Input>
-          <Input value={lastname} type="text" placeholder="Sobrenome" onChange={e => setName(e.target.value)}></Input>
+          <Input value={lastname} type="text" placeholder="Sobrenome" onChange={e => setLastname(e.target.value)}></Input>
           <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
           <Input value={password} type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)}></Input>
           <Button type="submit">Registrar</Button>
