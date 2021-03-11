@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import loginimg from './assets/loginpage.png'
 import { FiLogIn } from 'react-icons/fi'
+import { useState } from 'react'
 
 const Site = styled.div`
   width: 100%;
@@ -51,6 +52,10 @@ const Loginimg = styled.img`
   max-width: 500px;
 `
 
+const Form = styled.form`
+
+`
+
 const Input = styled.input`
   width: 100%;
   height: 60px;
@@ -79,14 +84,30 @@ const Button = styled.button`
 `
 
 export default function App() {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+
+  function handleLogin(e) {
+    e.preventDefault()
+
+    console.log(
+      email,
+      password
+    );
+  }
+
   return (
     <Site>
       <Container>
         <Title>Login</Title>
         <Text>Faça login e aproveite a plataforma!</Text>
-        <Input type="email" placeholder="E-mail"></Input>
-        <Input type="password" placeholder="Senha"></Input>
-        <Button>Login</Button>
+        <Form onSubmit={handleLogin}>
+          <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
+          <Input value={password} type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)}></Input>
+          <Button type="submit">Login</Button>
+        </Form>
         <Link href="https://www.google.com.br">
           <FiLogIn size={18} color="#FF7989" />
           Não tenho cadastro
