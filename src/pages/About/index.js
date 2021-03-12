@@ -1,4 +1,8 @@
+// Global
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+
+// Assets
 import aboutimg from '../../assets/about.png'
 import { IoReturnDownBackOutline } from 'react-icons/io5'
 
@@ -46,7 +50,7 @@ const Subtext = styled(Text)`
   font-size: 14px;
 `
 
-const Link = styled.a`
+const Linkinside = styled.h3`
   display: flex;
   align-items: center;
   margin-top: 16px;
@@ -67,26 +71,26 @@ const Line = styled.hr`
 `
 
 export default function About() {
-    return (
-        <Site>
-            <Container>
-                <Title>Sobre</Title>
-                <Text>A Management nasceu no ano de 2019 e tem como foco o controle de gestão.</Text>
-                <Text>Somos uma empresa focada na gestão de fornecedores, portanto poderá realizar o controle de todos os seus fornecedores em uma única aplicação de forma simples e rápida.</Text>
+  return (
+    <Site>
+      <Container>
+        <Title>Sobre</Title>
+        <Text>A Management nasceu no ano de 2019 e tem como foco o controle de gestão.</Text>
+        <Text>Somos uma empresa focada na gestão de fornecedores, portanto poderá realizar o controle de todos os seus fornecedores em uma única aplicação de forma simples e rápida.</Text>
 
-                <Subtitle>Desenvolvedores</Subtitle>
-                <Subtext>Nome: Pedro Henrique / RM: 338043</Subtext>
-                <Subtext>Nome: Kauã Estriga / RM: 338043</Subtext>
-                <Subtext>Nome: Bárbara Perretti / RM: 338043</Subtext>
+        <Subtitle>Desenvolvedores</Subtitle>
+        <Subtext>Nome: Pedro Henrique / RM: 338043</Subtext>
+        <Subtext>Nome: Kauã Estriga / RM: 338043</Subtext>
+        <Subtext>Nome: Bárbara Perretti / RM: 338043</Subtext>
 
-                <Line />
+        <Line />
 
-                <Link href="https://www.google.com.br">
-                    <IoReturnDownBackOutline size={18} color="#FF7989" />
-                    Voltar para o início
-                </Link>
-            </Container>
-            <Aboutimg src={aboutimg} />
-        </Site>
-    );
+        <Linkinside>
+          <IoReturnDownBackOutline size={18} color="#FF7989" />
+          <Link to="/home">Voltar para o início</Link>
+        </Linkinside>
+      </Container>
+      <Aboutimg src={aboutimg} />
+    </Site>
+  );
 }

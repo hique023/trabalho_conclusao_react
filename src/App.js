@@ -1,19 +1,13 @@
 import styled from 'styled-components'
 
-import Register from './components/Register'
-import Login from './components/Login'
-import About from './components/About'
+import Routes from './routes'
 
-const Site = styled.div`
-
-`
+const Site = styled.div``
 
 export default function App() {
   return (
     <Site>
-      <Register />
-      <Login />
-      <About />
+      <Routes />
     </Site>
   );
 }

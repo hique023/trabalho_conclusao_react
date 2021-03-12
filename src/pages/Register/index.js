@@ -1,7 +1,11 @@
+// Global
 import styled from 'styled-components'
+import { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+
+// Assets
 import registerimg from '../../assets/register.png'
 import { IoReturnDownBackOutline } from 'react-icons/io5'
-import { useState } from 'react'
 
 const Site = styled.div`
   width: 100%;
@@ -37,7 +41,7 @@ const Text = styled.p`
   font-size: 18px;
 `
 
-const Link = styled.a`
+const Linkinside = styled.h3`
   display: flex;
   align-items: center;
   margin-top: 16px;
@@ -91,6 +95,7 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const history = useHistory()
 
   function handleLogin(e) {
     e.preventDefault()
@@ -101,6 +106,13 @@ export default function Register() {
       email,
       password,
     );
+
+    try {
+      alert("Cadastro realizado com sucesso!")
+      history.push('/')
+    } catch (error) {
+      console.log('Erro no cadastro, tente novamente.');
+    }
   }
 
   return (
@@ -116,10 +128,10 @@ export default function Register() {
           <Input value={password} type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)}></Input>
           <Button type="submit">Registrar</Button>
         </Form>
-        <Link href="https://www.google.com.br">
+        <Linkinside>
           <IoReturnDownBackOutline size={25} color="#FF7989" />
-          Já tenho cadastro
-        </Link>
+          <Link to="/">Já tenho cadastro</Link>
+        </Linkinside>
       </Container>
     </Site>
   );

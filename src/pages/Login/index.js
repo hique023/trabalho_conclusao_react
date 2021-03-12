@@ -1,7 +1,11 @@
+// Global
 import styled from 'styled-components'
+import { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+
+// Assets
 import loginimg from '../../assets/loginpage.png'
 import { FiLogIn } from 'react-icons/fi'
-import { useState } from 'react'
 
 const Site = styled.div`
   width: 100%;
@@ -37,7 +41,7 @@ const Text = styled.p`
   font-size: 18px;
 `
 
-const Link = styled.a`
+const Linkinside = styled.h3`
   display: flex;
   align-items: center;
   margin-top: 16px;
@@ -86,35 +90,44 @@ const Button = styled.button`
 
 export default function Login() {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const history = useHistory()
 
 
-    function handleLogin(e) {
-        e.preventDefault()
+  function handleLogin(e) {
+    e.preventDefault()
 
-        console.log(
-            email,
-            password
-        );
-    }
-
-    return (
-        <Site>
-            <Container>
-                <Title>Login</Title>
-                <Text>Faça login e aproveite a plataforma!</Text>
-                <Form onSubmit={handleLogin}>
-                    <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
-                    <Input value={password} type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)}></Input>
-                    <Button type="submit">Login</Button>
-                </Form>
-                <Link href="https://www.google.com.br">
-                    <FiLogIn size={18} color="#FF7989" />
-                    Não tenho cadastro
-                </Link>
-            </Container>
-            <Loginimg src={loginimg} />
-        </Site>
+    console.log(
+      email,
+      password
     );
+
+    try {
+      alert('Login com sucesso!')
+      history.push('/home')
+    } catch (error) {
+      console.log('Erro no cadastro, tente novamente.')
+    }
+  }
+
+  return (
+    <Site>
+      <Container>
+        <Title>Login</Title>
+        <Text>Faça login e aproveite a plataforma!</Text>
+        <Form onSubmit={handleLogin}>
+          <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
+          <Input value={password} type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)}></Input>
+          <Button type="submit">Login</Button>
+        </Form>
+        <Linkinside to="/register">
+          <FiLogIn size={18} color="#FF7989" />
+          <Link to="/register">Não tenho cadastro</Link>
+        </Linkinside>
+      </Container>
+      <Loginimg src={loginimg} />
+    </Site>
+  );
 }
