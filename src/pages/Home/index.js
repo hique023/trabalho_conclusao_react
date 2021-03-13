@@ -1,6 +1,7 @@
 // Global
 import styled from 'styled-components'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import NewProvider from '../NewProvider'
 
 // Assets
 import { AiOutlineLogout } from 'react-icons/ai'
@@ -36,12 +37,21 @@ const DivLink = styled.div`
 const Container = styled.div`
   width: 100%;
   max-width: 1120px;
-  height: 100vh;
-  margin: 0 auto;
+  margin: 25px auto 0;
 
   display: flex;
   align-items: right;
   justify-content: center;
+`
+
+const DivSuperior = styled.div`
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: right;
+  justify-content: space-between;
 `
 
 const Title = styled.h1`
@@ -58,7 +68,7 @@ const Text = styled.p`
 `
 
 const Button = styled.button`
-  width: 100%;
+  width: 25%;
   height: 60px;
   background: #e02041;
   border: 0;
@@ -105,7 +115,12 @@ export default function Home() {
       </Header>
 
       <Container>
-        <Title>Título da Home</Title>
+        <DivSuperior>
+          <Title>Título da Home</Title>
+          <Linkinside>
+            <Link to="/newprovider">+ Cadastrar Fornecedor</Link>
+          </Linkinside>
+        </DivSuperior>
       </Container>
     </Site>
   )
