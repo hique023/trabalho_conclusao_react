@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 // Assets
-import loginimg from '../../assets/loginpage.png'
+import provider from '../../assets/provider.png'
 import { IoReturnDownBackOutline } from 'react-icons/io5'
 
 const Site = styled.div`
@@ -52,7 +52,7 @@ const Linkinside = styled.h3`
   transition: opacity 0.2s;
 `
 
-const Loginimg = styled.img`
+const ProviderImg = styled.img`
   max-width: 500px;
   margin-left: 30px;
 `
@@ -92,6 +92,8 @@ export default function Login() {
 
   const [name, setName] = useState('')
   const [product, setProduct] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
 
   const history = useHistory()
 
@@ -107,6 +109,8 @@ export default function Login() {
         <Form onSubmit={handleLogin}>
           <Input value={name} type="text" placeholder="Nome do Fornecedor" onChange={e => setName(e.target.value)}></Input>
           <Input value={product} type="text" placeholder="Produto" onChange={e => setProduct(e.target.value)}></Input>
+          <Input value={phone} type="text" placeholder="Telefone" onChange={e => setPhone(e.target.value)}></Input>
+          <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
           <Button type="submit">Cadastrar</Button>
         </Form>
         <Linkinside>
@@ -114,7 +118,7 @@ export default function Login() {
           <Link to="/home">Voltar</Link>
         </Linkinside>
       </Container>
-      <Loginimg src={loginimg} />
+      <ProviderImg src={provider} />
     </Site>
   );
 }
