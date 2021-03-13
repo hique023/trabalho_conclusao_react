@@ -100,6 +100,7 @@ export default function Login() {
 
   useEffect(() => {
     setEmail(emailLogin)
+    setPassword(passwordLogin)
   }, [])
 
   function handleLogin(e) {
