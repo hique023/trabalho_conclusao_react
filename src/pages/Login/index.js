@@ -1,6 +1,6 @@
 // Global
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 // Assets
@@ -95,18 +95,24 @@ export default function Login() {
 
   const history = useHistory()
 
+  const emailLogin = localStorage.getItem('email')
+  const passwordLogin = localStorage.getItem('password')
+
+  useEffect(() => {
+    setEmail(emailLogin)
+  }, [])
 
   function handleLogin(e) {
     e.preventDefault()
 
-    console.log(
-      email,
-      password
-    );
-
     try {
-      alert('Login com sucesso!')
-      history.push('/home')
+      if (email === emailLogin && password === passwordLogin) {
+        history.push('/home')
+      } else {
+        alert('Login ou senha inválidos!')
+        setPassword('')
+      }
+
     } catch (error) {
       console.log('Erro no cadastro, tente novamente.')
     }

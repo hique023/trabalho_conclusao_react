@@ -109,6 +109,10 @@ export default function Register() {
 
     try {
       alert("Cadastro realizado com sucesso!")
+      localStorage.setItem('firstName', name)
+      localStorage.setItem('lastName', lastname)
+      localStorage.setItem('email', email)
+      localStorage.setItem('password', password)
       history.push('/')
     } catch (error) {
       console.log('Erro no cadastro, tente novamente.');
