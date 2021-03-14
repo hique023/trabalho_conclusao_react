@@ -118,6 +118,7 @@ const ListProvider = styled.ul`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 24px;
   list-style: none;
+  margin-bottom: 50px;
 `
 
 export default function Home() {
