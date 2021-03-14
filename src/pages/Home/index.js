@@ -1,10 +1,10 @@
 // Global
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import NewProvider from '../NewProvider'
 
 // Assets
 import { AiOutlineLogout } from 'react-icons/ai'
+import logopage from '../../assets/logoProject.png'
 
 const Site = styled.div`
   width: 100%;
@@ -23,10 +23,13 @@ const Header = styled.div`
 
   display: flex;
   align-itens: center;
-  
-  background: #f2f2f2;
 
   justify-content: space-between;
+`
+
+const LogoPage = styled.img`
+  height: 60px;
+  margin: auto 0;
 `
 
 const DivLink = styled.div`
@@ -47,7 +50,7 @@ const Container = styled.div`
 const DivSuperior = styled.div`
   width: 100%;
   max-width: 1120px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
 
   display: flex;
   align-items: right;
@@ -55,6 +58,13 @@ const DivSuperior = styled.div`
 `
 
 const Title = styled.h1`
+  color: #FF7989;
+  display: flex;
+  align-itens: center;
+  margin: auto 5px;
+`
+
+const Subtitle = styled.h2`
   color: #FF7989;
   display: flex;
   align-itens: center;
@@ -97,11 +107,24 @@ const Linkinside = styled.h3`
   transition: opacity 0.2s;
 `
 
+const DivListProvider = styled.div`
+  display: flex;
+  align-itens: center;
+  justify-content: center;
+`
+
+const ListProvider = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 24px;
+  list-style: none;
+`
+
 export default function Home() {
   return (
     <Site>
       <Header>
-        <Title>Início</Title>
+        <LogoPage src={logopage} alt="Logo da página" />
         <DivLink>
           <Linkinside>
             <Link to="/about">About</Link>
@@ -116,12 +139,86 @@ export default function Home() {
 
       <Container>
         <DivSuperior>
-          <Title>Título da Home</Title>
+          <Subtitle>Lista de Fornecedores</Subtitle>
           <Linkinside>
             <Link to="/newprovider">+ Cadastrar Fornecedor</Link>
           </Linkinside>
         </DivSuperior>
       </Container>
+
+      <DivListProvider>
+        <ListProvider>
+          <li>
+            <strong>Nome do fornecedor</strong>
+            <p>Fornecedor teste</p>
+
+            <strong>Produto</strong>
+            <p>Produto teste</p>
+
+            <strong>Telefone</strong>
+            <p>11978451348</p>
+
+            <strong>Email</strong>
+            <p>a@a.com.br</p>
+          </li>
+
+          <li>
+            <strong>Nome do fornecedor</strong>
+            <p>Fornecedor teste</p>
+
+            <strong>Produto</strong>
+            <p>Produto teste</p>
+
+            <strong>Telefone</strong>
+            <p>11978451348</p>
+
+            <strong>Email</strong>
+            <p>a@a.com.br</p>
+          </li>
+
+          <li>
+            <strong>Nome do fornecedor</strong>
+            <p>Fornecedor teste</p>
+
+            <strong>Produto</strong>
+            <p>Produto teste</p>
+
+            <strong>Telefone</strong>
+            <p>11978451348</p>
+
+            <strong>Email</strong>
+            <p>a@a.com.br</p>
+          </li>
+
+          <li>
+            <strong>Nome do fornecedor</strong>
+            <p>Fornecedor teste</p>
+
+            <strong>Produto</strong>
+            <p>Produto teste</p>
+
+            <strong>Telefone</strong>
+            <p>11978451348</p>
+
+            <strong>Email</strong>
+            <p>a@a.com.br</p>
+          </li>
+
+          <li>
+            <strong>Nome do fornecedor</strong>
+            <p>Fornecedor teste</p>
+
+            <strong>Produto</strong>
+            <p>Produto teste</p>
+
+            <strong>Telefone</strong>
+            <p>11978451348</p>
+
+            <strong>Email</strong>
+            <p>a@a.com.br</p>
+          </li>
+        </ListProvider>
+      </DivListProvider>
     </Site>
   )
 }
