@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 // Assets
 import { AiOutlineLogout } from 'react-icons/ai'
+import { FiTrash2 } from 'react-icons/fi'
+import { RiEdit2Line } from 'react-icons/ri'
 import logopage from '../../assets/logoProject.png'
 
 const Site = styled.div`
@@ -121,6 +123,24 @@ const ListProvider = styled.ul`
   margin-bottom: 50px;
 `
 
+const ButtonDelete = styled.button`
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  border: 0;
+  transition: opacity 0.2s;
+  background: transparent;
+`
+
+const ButtonEdit = styled.button`
+  position: absolute;
+  right: 60px;
+  top: 24px;
+  border: 0;
+  transition: opacity 0.2s;
+  background: transparent;
+`
+
 export default function Home() {
   return (
     <Site>
@@ -161,6 +181,14 @@ export default function Home() {
 
             <strong>Email</strong>
             <p>a@a.com.br</p>
+
+            <ButtonDelete>
+              <FiTrash2 size={20} color="#a8a8b3" />
+            </ButtonDelete>
+
+            <ButtonEdit>
+              <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
+            </ButtonEdit>
           </li>
 
           <li>
@@ -175,6 +203,14 @@ export default function Home() {
 
             <strong>Email</strong>
             <p>a@a.com.br</p>
+
+            <ButtonDelete>
+              <FiTrash2 size={20} color="#a8a8b3" />
+            </ButtonDelete>
+
+            <ButtonEdit>
+              <RiEdit2Line size={20} color="#a8a8b3" />
+            </ButtonEdit>
           </li>
 
           <li>
@@ -189,6 +225,14 @@ export default function Home() {
 
             <strong>Email</strong>
             <p>a@a.com.br</p>
+
+            <ButtonDelete>
+              <FiTrash2 size={20} color="#a8a8b3" />
+            </ButtonDelete>
+
+            <ButtonEdit>
+              <RiEdit2Line size={20} color="#a8a8b3" />
+            </ButtonEdit>
           </li>
 
           <li>
@@ -203,6 +247,14 @@ export default function Home() {
 
             <strong>Email</strong>
             <p>a@a.com.br</p>
+
+            <ButtonDelete>
+              <FiTrash2 size={20} color="#a8a8b3" />
+            </ButtonDelete>
+
+            <ButtonEdit>
+              <RiEdit2Line size={20} color="#a8a8b3" />
+            </ButtonEdit>
           </li>
 
           <li>
@@ -217,6 +269,14 @@ export default function Home() {
 
             <strong>Email</strong>
             <p>a@a.com.br</p>
+
+            <ButtonDelete>
+              <FiTrash2 size={20} color="#a8a8b3" />
+            </ButtonDelete>
+
+            <ButtonEdit>
+              <RiEdit2Line size={20} color="#a8a8b3" />
+            </ButtonEdit>
           </li>
         </ListProvider>
       </DivListProvider>

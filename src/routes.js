@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import About from './pages/About'
 import Home from './pages/Home'
 import NewProvider from './pages/NewProvider'
+import EditProvider from './pages/EditProvider'
 
 export default function Routes() {
     return (
@@ -15,6 +16,7 @@ export default function Routes() {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/newprovider" component={NewProvider} />
+                <Route exact path="/editprovider" component={EditProvider} />
             </Switch>
         </BrowserRouter>
     )

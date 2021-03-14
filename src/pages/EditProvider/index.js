@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 // Assets
-import provider from '../../assets/provider.png'
+import edit from '../../assets/edit.png'
 import { IoReturnDownBackOutline } from 'react-icons/io5'
 
 const Site = styled.div`
@@ -88,37 +88,37 @@ const Button = styled.button`
   transition: filter 0.2s;
 `
 
-export default function NewProvider() {
+export default function EditProvider() {
 
-  const [name, setName] = useState('')
-  const [product, setProduct] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [product, setProduct] = useState('')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
 
-  const history = useHistory()
+    const history = useHistory()
 
-  function handleLogin(e) {
-    e.preventDefault()
-  }
+    function handleLogin(e) {
+        e.preventDefault()
+    }
 
-  return (
-    <Site>
-      <Container>
-        <Title>Cadastro de Fornecedor</Title>
-        <Text>Cadastre seus fornecedores e tenha uma gestão mais simples!</Text>
-        <Form onSubmit={handleLogin}>
-          <Input value={name} type="text" placeholder="Nome do Fornecedor" onChange={e => setName(e.target.value)}></Input>
-          <Input value={product} type="text" placeholder="Produto" onChange={e => setProduct(e.target.value)}></Input>
-          <Input value={phone} type="text" placeholder="Telefone" onChange={e => setPhone(e.target.value)}></Input>
-          <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
-          <Button type="submit">Cadastrar</Button>
-        </Form>
-        <Linkinside>
-          <IoReturnDownBackOutline size={18} color="#FF7989" />
-          <Link to="/home">Voltar</Link>
-        </Linkinside>
-      </Container>
-      <ProviderImg src={provider} />
-    </Site>
-  );
+    return (
+        <Site>
+            <ProviderImg src={edit} />
+            <Container>
+                <Title>Edição de Fornecedor</Title>
+                <Text>Edite seu fornecedor!</Text>
+                <Form onSubmit={handleLogin}>
+                    <Input value={name} type="text" placeholder="Nome do Fornecedor" onChange={e => setName(e.target.value)}></Input>
+                    <Input value={product} type="text" placeholder="Produto" onChange={e => setProduct(e.target.value)}></Input>
+                    <Input value={phone} type="text" placeholder="Telefone" onChange={e => setPhone(e.target.value)}></Input>
+                    <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
+                    <Button type="submit">Salvar</Button>
+                </Form>
+                <Linkinside>
+                    <IoReturnDownBackOutline size={18} color="#FF7989" />
+                    <Link to="/home">Voltar</Link>
+                </Linkinside>
+            </Container>
+        </Site>
+    );
 }
