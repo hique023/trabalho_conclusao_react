@@ -12,13 +12,13 @@ const DivListProvider = styled.div`
   justify-content: center;
 `
 
-const ListProviderul = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 24px;
-  list-style: none;
-  margin-bottom: 50px;
-`
+// const ListProviderul = styled.ul`
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   grid-gap: 24px;
+//   list-style: none;
+//   margin-bottom: 50px;
+// `
 
 const ButtonDelete = styled.button`
   position: absolute;
@@ -41,29 +41,29 @@ const ButtonEdit = styled.button`
 export default function ListProvider() {
     return (
         <DivListProvider>
-            <ListProviderul>
-                <li>
-                    <strong>Nome do fornecedor</strong>
-                    <p>Fornecedor teste</p>
+            {/* <ListProviderul> */}
+            <li>
+                <strong>Nome do fornecedor</strong>
+                <p>Fornecedor teste</p>
 
-                    <strong>Produto</strong>
-                    <p>Produto teste</p>
+                <strong>Produto</strong>
+                <p>Produto teste</p>
 
-                    <strong>Telefone</strong>
-                    <p>11978451348</p>
+                <strong>Telefone</strong>
+                <p>11978451348</p>
 
-                    <strong>Email</strong>
-                    <p>a@a.com.br</p>
+                <strong>Email</strong>
+                <p>a@a.com.br</p>
 
-                    <ButtonDelete>
-                        <FiTrash2 size={20} color="#a8a8b3" />
-                    </ButtonDelete>
+                <ButtonDelete>
+                    <FiTrash2 size={20} color="#a8a8b3" />
+                </ButtonDelete>
 
-                    <ButtonEdit>
-                        <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
-                    </ButtonEdit>
-                </li>
-            </ListProviderul>
+                <ButtonEdit>
+                    <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
+                </ButtonEdit>
+            </li>
+            {/* </ListProviderul> */}
         </DivListProvider>
     )
 }

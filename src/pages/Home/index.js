@@ -109,9 +109,17 @@ const Linkinside = styled.h3`
   transition: opacity 0.2s;
 `
 
+const ListProviderul = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 24px;
+  list-style: none;
+  margin-bottom: 50px;
+`
+
 export default function Home() {
 
-  const [providers, setProviders] = useState([{}, {}, {}, {}, {}, {}, {}])
+  const [providers, setProviders] = useState([{}, {}, {}, {}, {}, {}, {}, {}])
 
   return (
     <Site>
@@ -138,19 +146,19 @@ export default function Home() {
         </DivSuperior>
       </Container>
 
-      <ListProvider />
-      <ListProvider />
-      <ListProvider />
-      <ListProvider />
-      <ListProvider />
-      <ListProvider />
-      <ListProvider />
-      <ListProvider />
-      {/* {providers.map((item, key) => (
-        <ListProvider
-          key={key}
-        />
-      ))} */}
+      {/* <ListProviderul>
+        <ListProvider />
+        <ListProvider />
+        <ListProvider />
+      </ListProviderul> */}
+
+      <ListProviderul>
+        {providers.map((item, key) => (
+          <ListProvider
+            key={key}
+          />
+        ))}
+      </ListProviderul>
 
     </Site>
   )
