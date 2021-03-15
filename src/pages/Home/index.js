@@ -117,6 +117,19 @@ const ListProviderul = styled.ul`
   margin-bottom: 50px;
 `
 
+const Footer = styled.div`
+height: 5vh;
+  display: flex;
+  align-itens: center;
+  justify-content: center;
+  margin-bottom: 50px;
+`
+
+const H4 = styled.h4`
+  color: #ff7989;
+  font-weight: 300;
+`
+
 export default function Home() {
 
   const [providers, setProviders] = useState([{}, {}, {}, {}, {}, {}, {}, {}])
@@ -146,12 +159,6 @@ export default function Home() {
         </DivSuperior>
       </Container>
 
-      {/* <ListProviderul>
-        <ListProvider />
-        <ListProvider />
-        <ListProvider />
-      </ListProviderul> */}
-
       <ListProviderul>
         {providers.map((item, key) => (
           <ListProvider
@@ -159,6 +166,12 @@ export default function Home() {
           />
         ))}
       </ListProviderul>
+
+      <Footer>
+        <H4>
+          © 2021 - Todos os direitos reservados
+        </H4>
+      </Footer>
 
     </Site>
   )
