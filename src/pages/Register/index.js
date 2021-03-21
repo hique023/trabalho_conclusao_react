@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import firebase from '../../firebaseConfig'
 
 // Assets
 import registerimg from '../../assets/register.png'
@@ -107,16 +108,20 @@ export default function Register() {
       password,
     );
 
-    try {
-      alert("Cadastro realizado com sucesso!")
-      localStorage.setItem('firstName', name)
-      localStorage.setItem('lastName', lastname)
-      localStorage.setItem('email', email)
-      localStorage.setItem('password', password)
-      history.push('/')
-    } catch (error) {
-      console.log('Erro no cadastro, tente novamente.');
-    }
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        alert('Cadastro com sucesso!')
+        localStorage.setItem('firstName', name)
+        localStorage.setItem('lastName', lastname)
+        localStorage.setItem('email', email)
+        // localStorage.setItem('password', password)
+        history.push('/')
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage)
+      });
   }
 
   return (
@@ -126,10 +131,10 @@ export default function Register() {
         <Title>Cadastro</Title>
         <Text>Realize seu cadastro para aproveitar a plataforma!</Text>
         <Form onSubmit={handleLogin}>
-          <Input value={name} type="text" placeholder="Nome" onChange={e => setName(e.target.value)}></Input>
-          <Input value={lastname} type="text" placeholder="Sobrenome" onChange={e => setLastname(e.target.value)}></Input>
-          <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
-          <Input value={password} type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)}></Input>
+          <Input value={name} type="text" placeholder="Nome *" onChange={e => setName(e.target.value)} required></Input>
+          <Input value={lastname} type="text" placeholder="Sobrenome *" onChange={e => setLastname(e.target.value)} required></Input>
+          <Input value={email} type="email" placeholder="E-mail *" onChange={e => setEmail(e.target.value)} required></Input>
+          <Input value={password} type="password" placeholder="Senha *" onChange={e => setPassword(e.target.value)} required></Input>
           <Button type="submit">Registrar</Button>
         </Form>
         <Linkinside>

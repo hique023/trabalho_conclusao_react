@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import firebase from '../../firebaseConfig'
 
 // Assets
 import loginimg from '../../assets/loginpage.png'
@@ -96,27 +97,23 @@ export default function Login() {
   const history = useHistory()
 
   const emailLogin = localStorage.getItem('email')
-  const passwordLogin = localStorage.getItem('password')
 
   useEffect(() => {
     setEmail(emailLogin)
-    setPassword(passwordLogin)
   }, [])
 
   function handleLogin(e) {
     e.preventDefault()
 
-    try {
-      if (email === emailLogin && password === passwordLogin) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((user) => {
         history.push('/home')
-      } else {
-        alert('Login ou senha inválidos!')
-        setPassword('')
-      }
-
-    } catch (error) {
-      console.log('Erro no cadastro, tente novamente.')
-    }
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage)
+      });
   }
 
   return (
