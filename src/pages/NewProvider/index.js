@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import firebase from '../../firebaseConfig'
 
 // Assets
 import provider from '../../assets/provider.png'
@@ -90,6 +91,8 @@ const Button = styled.button`
 
 export default function NewProvider() {
 
+  const db = firebase.firestore();
+
   const [name, setName] = useState('')
   const [product, setProduct] = useState('')
   const [phone, setPhone] = useState('')
@@ -99,6 +102,27 @@ export default function NewProvider() {
 
   function handleLogin(e) {
     e.preventDefault()
+
+    db.collection("providers").add({
+      name: name,
+      product: product,
+      phone: phone,
+      email: email
+    })
+      .then((docRef) => {
+        // console.log("Document written with ID: ", docRef.id);
+        alert('Fornecedor cadastrado com sucesso!')
+      })
+      .catch((error) => {
+        // console.error("Error adding document: ", error);
+        alert('Erro ao cadastrar!')
+      });
+
+    setName('')
+    setProduct('')
+    setPhone('')
+    setEmail('')
+
   }
 
   return (
