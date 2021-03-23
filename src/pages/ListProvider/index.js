@@ -1,6 +1,7 @@
 // Global
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import firebase from '../../firebaseConfig'
 
 // Assets
 import { FiTrash2 } from 'react-icons/fi'
@@ -38,32 +39,31 @@ const ButtonEdit = styled.button`
   background: transparent;
 `
 
-export default function ListProvider() {
-    return (
-        <DivListProvider>
-            {/* <ListProviderul> */}
-            <li>
-                <strong>Nome do fornecedor</strong>
-                <p>Fornecedor teste</p>
+export default function ListProvider(props) {
 
-                <strong>Produto</strong>
-                <p>Produto teste</p>
+  return (
+    <DivListProvider>
+      <li>
+        <strong>Nome do fornecedor</strong>
+        <p>{props.name}</p>
 
-                <strong>Telefone</strong>
-                <p>11978451348</p>
+        <strong>Produto</strong>
+        <p>{props.product}</p>
 
-                <strong>Email</strong>
-                <p>a@a.com.br</p>
+        <strong>Telefone</strong>
+        <p>{props.phone}</p>
 
-                <ButtonDelete>
-                    <FiTrash2 size={20} color="#a8a8b3" />
-                </ButtonDelete>
+        <strong>Email</strong>
+        <p>{props.email}</p>
 
-                <ButtonEdit>
-                    <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
-                </ButtonEdit>
-            </li>
-            {/* </ListProviderul> */}
-        </DivListProvider>
-    )
+        <ButtonDelete>
+          <FiTrash2 size={20} color="#a8a8b3" />
+        </ButtonDelete>
+
+        <ButtonEdit>
+          <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
+        </ButtonEdit>
+      </li>
+    </DivListProvider>
+  )
 }

@@ -2,11 +2,12 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ListProvider from '../ListProvider'
+import firebase from '../../firebaseConfig'
 
 // Assets
 import { AiOutlineLogout } from 'react-icons/ai'
 import logopage from '../../assets/logoProject.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Site = styled.div`
   width: 100%;
@@ -132,7 +133,38 @@ const H4 = styled.h4`
 
 export default function Home() {
 
-  const [providers, setProviders] = useState([{}, {}, {}, {}, {}, {}, {}, {}])
+  const [providers, setProviders] = useState([{}, {}, {}, {}, {}])
+  const [nameProvider, setNameProvider] = useState('')
+  const [productProvider, setProductProvider] = useState('')
+  const [phoneProvider, setPhoneProvider] = useState('')
+  const [emailProvider, setEmailProvider] = useState('')
+
+  function getProviders() {
+    const db = firebase.firestore();
+
+    db.collection("providers").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.id, " => ", doc.data());
+        // console.log(doc.data())
+
+        setNameProvider(doc.data().name)
+        setProductProvider(doc.data().product)
+        setPhoneProvider(doc.data().phone)
+        setEmailProvider(doc.data().email)
+
+        console.log(nameProvider)
+        console.log(productProvider)
+        console.log(phoneProvider)
+        console.log(emailProvider)
+      });
+    })
+
+  }
+
+  useEffect(() => {
+    getProviders()
+  }, [])
+
 
   return (
     <Site>
@@ -163,6 +195,10 @@ export default function Home() {
         {providers.map((item, key) => (
           <ListProvider
             key={key}
+            name={nameProvider}
+            product={productProvider}
+            phone={phoneProvider}
+            email={emailProvider}
           />
         ))}
       </ListProviderul>
