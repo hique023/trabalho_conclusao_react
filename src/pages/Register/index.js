@@ -114,8 +114,8 @@ export default function Register() {
         localStorage.setItem('firstName', name)
         localStorage.setItem('lastName', lastname)
         localStorage.setItem('email', email)
-        // localStorage.setItem('password', password)
-        history.push('/')
+        localStorage.setItem('activeSession', true)
+        history.push('/home')
       })
       .catch((error) => {
         var errorCode = error.code;

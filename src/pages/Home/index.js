@@ -133,30 +133,34 @@ const H4 = styled.h4`
 
 export default function Home() {
 
-  const [providers, setProviders] = useState([{}, {}, {}, {}, {}])
+  const [providers, setProviders] = useState({ data: [] })
   const [nameProvider, setNameProvider] = useState('')
   const [productProvider, setProductProvider] = useState('')
   const [phoneProvider, setPhoneProvider] = useState('')
   const [emailProvider, setEmailProvider] = useState('')
 
-  function getProviders() {
+  async function getProviders() {
     const db = firebase.firestore();
 
+    const prov = []
+
     db.collection("providers").get().then((querySnapshot) => {
+      console.log({ querySnapshot })
       querySnapshot.forEach((doc) => {
-        // console.log(doc.id, " => ", doc.data());
+        prov.push(doc.data())
+        console.log(`Data: ${doc.data()}`)
+        console.log(doc.id, " => ", doc.data());
         // console.log(doc.data())
 
-        setNameProvider(doc.data().name)
-        setProductProvider(doc.data().product)
-        setPhoneProvider(doc.data().phone)
-        setEmailProvider(doc.data().email)
+        // setNameProvider(doc.data().name)
+        // setProductProvider(doc.data().product)
+        // setPhoneProvider(doc.data().phone)
+        // setEmailProvider(doc.data().email)
 
-        console.log(nameProvider)
-        console.log(productProvider)
-        console.log(phoneProvider)
-        console.log(emailProvider)
       });
+
+      setProviders({ data: prov })
+
     })
 
   }
@@ -165,8 +169,9 @@ export default function Home() {
     getProviders()
   }, [])
 
+  console.log(providers);
 
-  return (
+  return providers && (
     <Site>
       <Header>
         <LogoPage src={logopage} alt="Logo da página" />
@@ -192,13 +197,13 @@ export default function Home() {
       </Container>
 
       <ListProviderul>
-        {providers.map((item, key) => (
+        {providers.data.map((item, key) => (
           <ListProvider
             key={key}
-            name={nameProvider}
-            product={productProvider}
-            phone={phoneProvider}
-            email={emailProvider}
+            name={item.name}
+            product={item.product}
+            phone={item.phone}
+            email={item.email}
           />
         ))}
       </ListProviderul>
