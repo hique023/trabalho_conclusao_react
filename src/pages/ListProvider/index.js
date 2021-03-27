@@ -56,6 +56,9 @@ export default function ListProvider(props) {
         <strong>Email</strong>
         <p>{props.email}</p>
 
+        <strong>Id</strong>
+        <p>{props.id}</p>
+
         <ButtonDelete>
           <FiTrash2 size={20} color="#a8a8b3" />
         </ButtonDelete>

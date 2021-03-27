@@ -133,14 +133,16 @@ const H4 = styled.h4`
 
 export default function Home() {
 
-  const [providers, setProviders] = useState({ data: [] })
-  const [nameProvider, setNameProvider] = useState('')
-  const [productProvider, setProductProvider] = useState('')
-  const [phoneProvider, setPhoneProvider] = useState('')
-  const [emailProvider, setEmailProvider] = useState('')
+  const db = firebase.firestore();
 
-  async function getProviders() {
-    const db = firebase.firestore();
+  const [providers, setProviders] = useState({ data: [] })
+  const [idProvider, setIdProvider] = useState({ idDataProvider: [] })
+  // const [nameProvider, setNameProvider] = useState('')
+  // const [productProvider, setProductProvider] = useState('')
+  // const [phoneProvider, setPhoneProvider] = useState('')
+  // const [emailProvider, setEmailProvider] = useState('')
+
+  function getProviders() {
 
     const prov = []
 
@@ -148,30 +150,55 @@ export default function Home() {
       console.log({ querySnapshot })
       querySnapshot.forEach((doc) => {
         prov.push(doc.data())
-        console.log(`Data: ${doc.data()}`)
-        console.log(doc.id, " => ", doc.data());
-        // console.log(doc.data())
-
-        // setNameProvider(doc.data().name)
-        // setProductProvider(doc.data().product)
-        // setPhoneProvider(doc.data().phone)
-        // setEmailProvider(doc.data().email)
-
+        // console.log(`Data: ${doc.data()}`)
+        // console.log(doc.id, " => ", doc.data());
+        // console.log(doc.id)
+        console.table(prov)
       });
 
       setProviders({ data: prov })
+    })
+  }
 
+  function getProviderId() {
+
+    const idProv = []
+
+    db.collection("providers").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        idProv.push(doc.id)
+        console.table(idProv)
+      });
+
+      setIdProvider({ idDataProvider: idProv })
+    })
+  }
+
+  function deleteProvider() {
+    const id = ''
+
+    db.collection('providers').doc(id).delete()
+  }
+
+  function updateProvider() {
+
+    const id = ''
+
+    db.collection('providers').doc(id).set({
+      name: 'Fornecedor Teste',
+      email: 'provider@teste.com.br',
+      produt: 'Computador',
+      phone: '11111111111'
     })
 
   }
 
   useEffect(() => {
     getProviders()
+    getProviderId()
   }, [])
 
-  console.log(providers);
-
-  return providers && (
+  return providers && idProvider && (
     <Site>
       <Header>
         <LogoPage src={logopage} alt="Logo da página" />
@@ -197,13 +224,14 @@ export default function Home() {
       </Container>
 
       <ListProviderul>
-        {providers.data.map((item, key) => (
-          <ListProvider
+        {providers.data.map((item, key, idProv) => (
+          < ListProvider
             key={key}
             name={item.name}
             product={item.product}
             phone={item.phone}
             email={item.email}
+            id={idProv[item]}
           />
         ))}
       </ListProviderul>
