@@ -173,11 +173,11 @@ export default function Home() {
   //   })
   // }
 
-  function deleteProvider() {
-    const id = ''
+  // function deleteProvider() {
+  //   const id = ''
 
-    db.collection('providers').doc(id).delete()
-  }
+  //   db.collection('providers').doc(id).delete()
+  // }
 
   // function updateProvider() {
 

@@ -74,8 +74,12 @@ export default function ListProvider(props) {
           <FiTrash2 size={20} color="#a8a8b3" />
         </ButtonDelete>
 
-        <ButtonEdit>
+        {/* <ButtonEdit>
           <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
+        </ButtonEdit> */}
+
+        <ButtonEdit>
+          <Link to={{ pathname: "/editprovider" }}><RiEdit2Line size={20} color="#a8a8b3" /></Link>
         </ButtonEdit>
       </li>
     </DivListProvider>
