@@ -6,6 +6,7 @@ import firebase from '../../firebaseConfig'
 // Assets
 import { FiTrash2 } from 'react-icons/fi'
 import { RiEdit2Line } from 'react-icons/ri'
+import { useEffect } from 'react'
 
 const DivListProvider = styled.div`
   display: flex;
@@ -41,6 +42,16 @@ const ButtonEdit = styled.button`
 
 export default function ListProvider(props) {
 
+  const db = firebase.firestore();
+
+  function deleteProvider() {
+    const id = props.id
+
+    db.collection('providers').doc(id).delete()
+
+    props.getProvider()
+  }
+
   return (
     <DivListProvider>
       <li>
@@ -59,7 +70,7 @@ export default function ListProvider(props) {
         <strong>Id</strong>
         <p>{props.id}</p>
 
-        <ButtonDelete>
+        <ButtonDelete onClick={deleteProvider}>
           <FiTrash2 size={20} color="#a8a8b3" />
         </ButtonDelete>
 

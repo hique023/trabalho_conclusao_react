@@ -97,21 +97,56 @@ export default function NewProvider() {
   const [product, setProduct] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
+  const [id, setId] = useState('')
 
   const history = useHistory()
 
-  function handleLogin(e) {
+  function handleNewProvider(e) {
     e.preventDefault()
 
     db.collection("providers").add({
       name: name,
       product: product,
       phone: phone,
-      email: email
+      email: email,
+      id: id
     })
       .then((docRef) => {
         // console.log("Document written with ID: ", docRef.id);
-        alert('Fornecedor cadastrado com sucesso!')
+        alert(`Fornecedor cadastrado com sucesso! ${docRef.id}`)
+
+        const idProv = docRef.id
+
+        db.collection('providers').doc(idProv).get().then((doc) => {
+          if (doc.exists) {
+            console.log("Document data:", doc.data());
+
+            const nameProv = doc.data().name
+            const productProv = doc.data().product
+            const phoneProv = doc.data().phone
+            const emailProv = doc.data().email
+
+            console.log(nameProv)
+            console.log(productProv)
+            console.log(phoneProv)
+            console.log(emailProv)
+
+            db.collection('providers').doc(idProv).set({
+              name: nameProv,
+              product: productProv,
+              phone: phoneProv,
+              email: emailProv,
+              id: idProv
+            })
+
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        }).catch((error) => {
+          console.log("Error getting document:", error);
+        });
+
       })
       .catch((error) => {
         // console.error("Error adding document: ", error);
@@ -130,7 +165,7 @@ export default function NewProvider() {
       <Container>
         <Title>Cadastro de Fornecedor</Title>
         <Text>Cadastre seus fornecedores e tenha uma gestão mais simples!</Text>
-        <Form onSubmit={handleLogin}>
+        <Form onSubmit={handleNewProvider}>
           <Input value={name} type="text" placeholder="Nome do Fornecedor" onChange={e => setName(e.target.value)}></Input>
           <Input value={product} type="text" placeholder="Produto" onChange={e => setProduct(e.target.value)}></Input>
           <Input value={phone} type="text" placeholder="Telefone" onChange={e => setPhone(e.target.value)}></Input>
