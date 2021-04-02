@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-expressions */
 // Global
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ListProvider from '../ListProvider'
 import firebase from '../../firebaseConfig'
 
@@ -134,6 +135,7 @@ const H4 = styled.h4`
 export default function Home() {
 
   const db = firebase.firestore();
+  const history = useHistory()
 
   const [providers, setProviders] = useState({ data: [] })
   // const [nameProvider, setNameProvider] = useState('')
@@ -161,6 +163,17 @@ export default function Home() {
 
   function loggout() {
     localStorage.removeItem('isLogged')
+  }
+
+  function checkLogin() {
+    const isLogged = localStorage.getItem('isLogged')
+
+    if (isLogged) {
+      getProviders()
+    } else (
+      alert('Faça login para acessar esta página!'),
+      history.push('/')
+    )
   }
 
   // function getProviderId() {
@@ -198,7 +211,7 @@ export default function Home() {
   // }
 
   useEffect(() => {
-    getProviders()
+    checkLogin()
   }, [])
 
   return providers && (
