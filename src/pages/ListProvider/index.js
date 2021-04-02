@@ -43,6 +43,7 @@ const ButtonEdit = styled.button`
 export default function ListProvider(props) {
 
   const db = firebase.firestore();
+  const idProv = props.id
 
   function deleteProvider() {
     const id = props.id
@@ -50,6 +51,10 @@ export default function ListProvider(props) {
     db.collection('providers').doc(id).delete()
 
     props.getProvider()
+  }
+
+  function editProvider() {
+    localStorage.setItem('idProvider', props.id)
   }
 
   return (
@@ -78,10 +83,14 @@ export default function ListProvider(props) {
           <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
         </ButtonEdit> */}
 
-        <ButtonEdit>
-          <Link to={{ pathname: "/editprovider" }}><RiEdit2Line size={20} color="#a8a8b3" /></Link>
+        {/* <ButtonEdit>
+          <Link to={{ pathname: "/editprovider", state: { idProv } }}><RiEdit2Line size={20} color="#a8a8b3" /></Link>
+        </ButtonEdit> */}
+
+        <ButtonEdit onClick={editProvider}>
+          <Link to='editprovider'><RiEdit2Line size={20} color="#a8a8b3" /></Link>
         </ButtonEdit>
       </li>
-    </DivListProvider>
+    </DivListProvider >
   )
 }

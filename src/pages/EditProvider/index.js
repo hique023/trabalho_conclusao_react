@@ -1,7 +1,8 @@
 // Global
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import firebase from '../../firebaseConfig'
 
 // Assets
 import edit from '../../assets/edit.png'
@@ -88,37 +89,87 @@ const Button = styled.button`
   transition: filter 0.2s;
 `
 
-export default function EditProvider() {
+export default function EditProvider(props) {
 
-    const [name, setName] = useState('')
-    const [product, setProduct] = useState('')
-    const [phone, setPhone] = useState('')
-    const [email, setEmail] = useState('')
+  const db = firebase.firestore();
 
-    const history = useHistory()
+  const [name, setName] = useState('')
+  const [product, setProduct] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
 
-    function handleLogin(e) {
-        e.preventDefault()
-    }
+  const history = useHistory()
 
-    return (
-        <Site>
-            <ProviderImg src={edit} />
-            <Container>
-                <Title>Edição de Fornecedor</Title>
-                <Text>Edite seu fornecedor!</Text>
-                <Form onSubmit={handleLogin}>
-                    <Input value={name} type="text" placeholder="Nome do Fornecedor" onChange={e => setName(e.target.value)}></Input>
-                    <Input value={product} type="text" placeholder="Produto" onChange={e => setProduct(e.target.value)}></Input>
-                    <Input value={phone} type="text" placeholder="Telefone" onChange={e => setPhone(e.target.value)}></Input>
-                    <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
-                    <Button type="submit">Salvar</Button>
-                </Form>
-                <Linkinside>
-                    <IoReturnDownBackOutline size={18} color="#FF7989" />
-                    <Link to="/home">Voltar</Link>
-                </Linkinside>
-            </Container>
-        </Site>
-    );
+  async function getData() {
+    const idProv = localStorage.getItem('idProvider')
+    console.log(idProv)
+
+    db.collection('providers').doc(idProv).get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+
+        const nameProv = doc.data().name
+        const productProv = doc.data().product
+        const phoneProv = doc.data().phone
+        const emailProv = doc.data().email
+
+        setName(nameProv)
+        setProduct(productProv)
+        setPhone(phoneProv)
+        setEmail(emailProv)
+
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
+
+  function handleUpdate(e) {
+    const idProv = localStorage.getItem('idProvider')
+
+    e.preventDefault()
+
+    setName(name)
+    setProduct(product)
+    setPhone(phone)
+    setEmail(email)
+
+    db.collection('providers').doc(idProv).set({
+      name: name,
+      product: product,
+      phone: phone,
+      email: email,
+      id: idProv
+    })
+
+    alert('Fornecedor atualizado com sucesso!')
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  return (
+    <Site>
+      <ProviderImg src={edit} />
+      <Container>
+        <Title>Edição de Fornecedor</Title>
+        <Text>Edite seu fornecedor!</Text>
+        <Form onSubmit={handleUpdate}>
+          <Input value={name} type="text" placeholder="Nome do Fornecedor" onChange={e => setName(e.target.value)}></Input>
+          <Input value={product} type="text" placeholder="Produto" onChange={e => setProduct(e.target.value)}></Input>
+          <Input value={phone} type="text" placeholder="Telefone" onChange={e => setPhone(e.target.value)}></Input>
+          <Input value={email} type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)}></Input>
+          <Button type="submit">Salvar</Button>
+        </Form>
+        <Linkinside>
+          <IoReturnDownBackOutline size={18} color="#FF7989" />
+          <Link to="/home">Voltar</Link>
+        </Linkinside>
+      </Container>
+    </Site>
+  );
 }
