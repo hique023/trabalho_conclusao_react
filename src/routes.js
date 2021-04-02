@@ -8,6 +8,7 @@ import NewProvider from './pages/NewProvider'
 import EditProvider from './pages/EditProvider'
 
 export default function Routes() {
+
     return (
         <BrowserRouter>
             <Switch>

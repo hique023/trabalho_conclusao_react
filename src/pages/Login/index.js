@@ -93,6 +93,7 @@ export default function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [sessionActive, setSessionActive] = useState(false)
 
   const history = useHistory()
 
@@ -107,6 +108,7 @@ export default function Login() {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
+        localStorage.setItem('isLogged', true)
         history.push('/home')
       })
       .catch((error) => {

@@ -159,6 +159,10 @@ export default function Home() {
     })
   }
 
+  function loggout() {
+    localStorage.removeItem('isLogged')
+  }
+
   // function getProviderId() {
 
   //   const idProv = []
@@ -205,7 +209,7 @@ export default function Home() {
           <Linkinside>
             <Link to="/about">About</Link>
           </Linkinside>
-          <Linkinside>
+          <Linkinside onClick={loggout}>
             <Link to="/">
               <AiOutlineLogout size={18} color="#FF7989" />
             </Link>
