@@ -6,21 +6,12 @@ import firebase from '../../firebaseConfig'
 // Assets
 import { FiTrash2 } from 'react-icons/fi'
 import { RiEdit2Line } from 'react-icons/ri'
-import { useEffect } from 'react'
 
 const DivListProvider = styled.div`
   display: flex;
   align-itens: center;
   justify-content: center;
 `
-
-// const ListProviderul = styled.ul`
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-gap: 24px;
-//   list-style: none;
-//   margin-bottom: 50px;
-// `
 
 const ButtonDelete = styled.button`
   position: absolute;
@@ -72,20 +63,12 @@ export default function ListProvider(props) {
         <strong>Email</strong>
         <p>{props.email}</p>
 
-        <strong>Id</strong>
-        <p>{props.id}</p>
+        {/* <strong>Id</strong>
+        <p>{props.id}</p> */}
 
         <ButtonDelete onClick={deleteProvider}>
           <FiTrash2 size={20} color="#a8a8b3" />
         </ButtonDelete>
-
-        {/* <ButtonEdit>
-          <Link to="editprovider"><RiEdit2Line size={20} color="#a8a8b3" /></Link>
-        </ButtonEdit> */}
-
-        {/* <ButtonEdit>
-          <Link to={{ pathname: "/editprovider", state: { idProv } }}><RiEdit2Line size={20} color="#a8a8b3" /></Link>
-        </ButtonEdit> */}
 
         <ButtonEdit onClick={editProvider}>
           <Link to='editprovider'><RiEdit2Line size={20} color="#a8a8b3" /></Link>

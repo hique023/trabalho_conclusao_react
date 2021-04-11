@@ -115,6 +115,7 @@ export default function Register() {
         localStorage.setItem('lastName', lastname)
         localStorage.setItem('email', email)
         localStorage.setItem('activeSession', true)
+        localStorage.setItem('isLogged', true)
         history.push('/home')
       })
       .catch((error) => {

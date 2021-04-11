@@ -138,23 +138,14 @@ export default function Home() {
   const history = useHistory()
 
   const [providers, setProviders] = useState({ data: [] })
-  // const [nameProvider, setNameProvider] = useState('')
-  // const [productProvider, setProductProvider] = useState('')
-  // const [phoneProvider, setPhoneProvider] = useState('')
-  // const [emailProvider, setEmailProvider] = useState('')
 
   function getProviders() {
 
     const prov = []
 
     db.collection("providers").get().then((querySnapshot) => {
-      // console.log({ querySnapshot })
       querySnapshot.forEach((doc) => {
         prov.push(doc.data())
-        // console.log(`Data: ${doc.data()}`)
-        // console.log(doc.id, " => ", doc.data());
-        // console.log(doc.id)
-        // console.table(prov)
       });
 
       setProviders({ data: prov })
@@ -175,40 +166,6 @@ export default function Home() {
       history.push('/')
     )
   }
-
-  // function getProviderId() {
-
-  //   const idProv = []
-
-  //   db.collection("providers").get().then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       idProv.push(doc.id)
-  //       console.table(idProv)
-  //     });
-
-  //     setIdProvider({ idDataProvider: idProv })
-  //   })
-  // }
-
-  // function deleteProvider() {
-  //   const id = ''
-
-  //   db.collection('providers').doc(id).delete()
-  // }
-
-  // function updateProvider() {
-
-  //   const id = 'mF6uV341edCsjgzhNYBk'
-
-  //   db.collection('providers').doc(id).set({
-  //     name: 'Fornecedor Teste',
-  //     email: 'provider@teste.com.br',
-  //     produt: 'Computador',
-  //     phone: '11111111111',
-  //     id: 'mF6uV341edCsjgzhNYBk'
-  //   })
-
-  // }
 
   useEffect(() => {
     checkLogin()
