@@ -112,8 +112,7 @@ export default function NewProvider() {
       id: id
     })
       .then((docRef) => {
-        // console.log("Document written with ID: ", docRef.id);
-        alert(`Fornecedor cadastrado com sucesso! ${docRef.id}`)
+        alert(`Fornecedor cadastrado com sucesso!`)
 
         const idProv = docRef.id
 
